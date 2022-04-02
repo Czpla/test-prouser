@@ -1,8 +1,11 @@
-import data from './file/ips.json';
+import data from './resources/input-file/ips.json';
 import { SeparatedData } from './utils/separated-data';
+import { GenerateCsv } from './utils/generate-csv';
 
-const separatedData = new SeparatedData(data);
+const separatedDataInstance = new SeparatedData();
+const generateInstance = new GenerateCsv();
 
-const itens = separatedData.separed();
+const dataSepared = separatedDataInstance.separed(data);
 
-console.log(itens);
+generateInstance.generate(dataSepared, 'ips-valid', 'found');
+generateInstance.generate(dataSepared, 'ips-to-block', 'notFound');
